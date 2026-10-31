@@ -1,5 +1,6 @@
 import { getGithubApp } from "../utils/github-app";
 import { savePullRequest } from "@/features/reviews/server/save-pull-request";
+import { inngest } from "@/features/inngest/clients";
 
 const REVIEWABLE_ACTIONS = ["opened", "synchronize", "reopened"];
 
@@ -41,12 +42,25 @@ export async function handleGithubWebhook(request: Request){
 
     const event = JSON.parse(payload) as PullRequestWebhookPayload;
 
-    console.log("event", event);
+    console.log(
+        "[webhook] pull_request",
+        event.action,
+        event.repository.full_name,
+        `#${event.pull_request.number}`
+    );
 
     if(!REVIEWABLE_ACTIONS.includes(event.action)){
     return Response.json({ received: true });
     }
 
-    const pullRequest = await savePullRequest(event)
+    const pullRequest = await savePullRequest(event);
+
+    // Dispatch the review. Without this the review function never runs —
+    // the webhook just persisted the row and nothing else sent the event.
+    await inngest.send({
+        name: "github/pr.received",
+        data: { pullRequestId: pullRequest.id },
+    });
+
     return Response.json({ received: true})
 }

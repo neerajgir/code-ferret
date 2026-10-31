@@ -68,6 +68,12 @@ export function buildRepoNamespace(repoFullName: string) {
         const part = start / MAX_CHUNK_LINES;
         const text = lines.slice(start, start + MAX_CHUNK_LINES).join("\n");
   
+        // The documents API rejects empty field values, and one empty chunk
+        // fails the whole upsert batch (e.g. empty files, blank-only slices).
+        if (!text.trim()) {
+          continue;
+        }
+  
         chunks.push({
           id: buildChunkId(file.filePath, part),
           filePath: file.filePath,
@@ -122,13 +128,15 @@ export function buildRepoNamespace(repoFullName: string) {
     for (let start = 0; start < chunks.length; start += UPSERT_BATCH_SIZE) {
       const batch = chunks.slice(start, start + UPSERT_BATCH_SIZE);
   
-      const records = batch.map((chunk) => ({
-        id: chunk.id,
-        text: chunk.text,
-        filePath: chunk.filePath,
+      // The index has a document schema (`title` + embedded `chunk_text`), so
+      // writes go through the documents API; `_id` replaces the record `id`.
+      const documents = batch.map((chunk) => ({
+        _id: chunk.id,
+        title: chunk.filePath,
+        chunk_text: chunk.text,
       }));
   
-      await index.namespace(namespace).upsertRecords({ records });
+      await index.namespace(namespace).documents.upsert({ documents });
     }
   }
 
