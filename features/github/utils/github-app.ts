@@ -16,7 +16,12 @@ export function getGithubApp(){
 }
 
 export function getGithubInstallUrl(userId:string) {
-    const appName = process.env.GITHUB_APP_NAME!;
+    const appName = process.env.GITHUB_APP_NAME;
+    if (!appName) {
+        throw new Error(
+            "GITHUB_APP_NAME is not set. It must contain the GitHub App's slug (e.g. \"my-reviewer-app\")."
+        );
+    }
     const url = new URL(`https://github.com/apps/${appName}/installations/new`);
     url.searchParams.set("state", userId);
     return url.toString();

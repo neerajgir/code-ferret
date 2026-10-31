@@ -23,9 +23,16 @@ export async function signInWithGithub(formData: FormData) {
 }
 
 export async function getServerSession() {
-    return auth.api.getSession({
-        headers: await headers()
-    })
+    try {
+        return await auth.api.getSession({
+            headers: await headers()
+        })
+    } catch (error) {
+        // A transient DB failure (e.g. a cold-started Neon compute) should
+        // degrade to "signed out" instead of a 500 on every page.
+        console.error("[auth] Failed to get session:", error);
+        return null;
+    }
 }
 
 export async function requiredAuth(redirectTo = SIGN_IN_PATH) {

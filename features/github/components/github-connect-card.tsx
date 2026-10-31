@@ -11,7 +11,6 @@ import {
     statusBadge,
     statusButtonClass,
 } from "@/features/dashboard/lib/status-style";
-import { getGithubInstallUrl } from "@/features/github/utils/github-app";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -27,7 +26,12 @@ import { disconnectGithubApp } from "../actions";
 
 
 type GithubConnectCardProps = {
-    userId: string;
+    /**
+     * GitHub App install URL, precomputed on the server: the client bundle
+     * has no access to `process.env.GITHUB_APP_NAME`, so building it here
+     * would SSR one href and hydrate with another (hydration mismatch).
+     */
+    installUrl: string;
     installation: GithubInstallationStatus;
 };
 
@@ -117,12 +121,10 @@ function ConnectionActions({
 }
 
 export function GithubConnectCard({
-    userId,
     installation,
+    installUrl,
 }: GithubConnectCardProps) {
     const { connected, accountLogin } = installation;
-    // Install URL encodes userId so the callback can associate the installation
-    const installUrl = getGithubInstallUrl(userId);
 
     // Default to neutral styling; switch to green when connected
     let cardBorderClass = "border-border";
@@ -155,7 +157,7 @@ export function GithubConnectCard({
                             <div>
                                 <CardTitle>GitHub App</CardTitle>
                                 <CardDescription>
-                                    Install the Chai reviewer app on your GitHub account or
+                                    Install the CodeFerret AI Code Reviewer app on your GitHub account or
                                     organization to access public and private repositories.
                                 </CardDescription>
                             </div>

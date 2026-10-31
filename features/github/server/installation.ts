@@ -1,11 +1,6 @@
-import { DASHBOARD_ROUTES } from "@/features/dashboard/lib/routes";
 import type {GithubInstallationStatus} from "@/features/dashboard/lib/types";
 import {getGithubApp} from "@/features/github/utils/github-app";
 import {prisma} from "@/lib/db";
-import { se, tr } from "date-fns/locale";
-import { connect } from "http2";
-import { red } from "next/dist/lib/picocolors";
-import { redirect } from "next/navigation";
 
 function getAccountLogin(
     account: {login?: string; slug?: string } | null | undefined

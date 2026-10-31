@@ -2,6 +2,7 @@ import { requiredAuth } from '@/features/auth/actions';
 import { DashboardHeader } from '@/features/dashboard/components/dashboard-header';
 import { GithubConnectCard } from '@/features/github/components/github-connect-card';
 import { getInstallationStatus } from '@/features/github/server/installation';
+import { getGithubInstallUrl } from '@/features/github/utils/github-app';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -12,13 +13,17 @@ export const metadata: Metadata = {
 const DashboardGithubPage = async () => {
   const session = await requiredAuth();
   const installation = await getInstallationStatus(session.user.id);
+  // Computed here (server) so the client bundle never needs GITHUB_APP_NAME;
+  // reading that env var inside the client card made the server render the
+  // real app name while the client rendered "undefined" (hydration mismatch).
+  const installUrl = getGithubInstallUrl(session.user.id);
   return (
     <div>
       <DashboardHeader
       title="Github App"
       description="Install or Disconnect the reviewer app from you github account"
       />
-      <GithubConnectCard userId={session.user.id} installation={installation}/>
+      <GithubConnectCard installUrl={installUrl} installation={installation}/>
     </div>
   )
 }
