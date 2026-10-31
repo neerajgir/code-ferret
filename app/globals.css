@@ -2,6 +2,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Tailwind must scan Streamdown's dist so its utility classes are generated. */
+@source "../node_modules/streamdown/dist/*.js";
+@source "../node_modules/@streamdown/code/dist/*.js";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -130,4 +134,101 @@
   html {
     @apply font-sans;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   AI review markdown (Streamdown)
+   Basic typography for rendered review markdown on the pull request page.
+   --------------------------------------------------------------------------- */
+
+.ai-review {
+  text-wrap: pretty;
+}
+
+.ai-review > :first-child {
+  margin-top: 0;
+}
+
+.ai-review > :last-child {
+  margin-bottom: 0;
+}
+
+.ai-review :is(h1, h2, h3, h4, h5, h6) {
+  margin: 1.25em 0 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ai-review h1 {
+  font-size: 1.125rem;
+}
+
+.ai-review h2 {
+  font-size: 1rem;
+}
+
+.ai-review :is(h3, h4, h5, h6) {
+  font-size: 0.875rem;
+}
+
+.ai-review p {
+  margin: 0.75em 0;
+}
+
+.ai-review :is(ul, ol) {
+  margin: 0.5em 0;
+  padding-left: 1.375em;
+}
+
+.ai-review ul {
+  list-style: disc;
+}
+
+.ai-review ol {
+  list-style: decimal;
+}
+
+.ai-review li {
+  margin: 0.25em 0;
+}
+
+.ai-review li::marker {
+  color: var(--muted-foreground);
+}
+
+.ai-review a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ai-review blockquote {
+  margin: 0.75em 0;
+  padding-left: 1em;
+  border-left: 2px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.ai-review hr {
+  margin: 1em 0;
+  border-color: var(--border);
+}
+
+.ai-review table {
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.ai-review :is(th, td) {
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ai-review th {
+  background: var(--muted);
+  font-weight: 500;
 }
