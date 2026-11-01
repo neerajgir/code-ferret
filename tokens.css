@@ -1,0 +1,96 @@
+/* Hallmark · tokens · Code Ferret welcome page
+ * Anchor: brand green sampled from the Code Ferret logo (oklch hue 158)
+ * Paper:  light oklch(0.995 0.003 158) / dark oklch(0.145 0.006 158)
+ * Accent: light oklch(0.50 0.13 158)  / dark oklch(0.79 0.17 158)
+ * Type:   Oxanium (display) · Geist (body) · Geist Mono (code, stage numbers)
+ * Scale:  4 pt spacing · major-third type · 1 px hairline · 2 px stage rule
+ *
+ * Every custom property is namespaced `--cf-` on purpose: this file is global
+ * CSS, and plain names like `--color-accent` or `--text-sm` are Tailwind theme
+ * variables that would leak into the dashboard if redefined here.
+ */
+
+:root {
+  /* surfaces */
+  --cf-paper: oklch(0.995 0.003 158);
+  --cf-paper-2: oklch(0.962 0.004 158);
+  --cf-rule: oklch(0.914 0.005 158);
+
+  /* ink */
+  --cf-ink: oklch(0.16 0.008 158);
+  --cf-muted: oklch(0.545 0.008 158);
+
+  /* accent — one hue, used as a highlighter only */
+  --cf-accent: oklch(0.5 0.13 158);
+  --cf-accent-ink: oklch(0.42 0.11 158);
+  --cf-on-accent: oklch(0.99 0.01 158);
+  --cf-focus: oklch(0.48 0.13 158);
+
+  /* semantic diff colour — always paired with a +/− glyph */
+  --cf-diff-add: oklch(0.47 0.12 158);
+  --cf-diff-del: oklch(0.52 0.15 25);
+
+  /* type */
+  --cf-font-display: var(--font-sans, "Oxanium"), ui-sans-serif, sans-serif;
+  --cf-font-body: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  --cf-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+
+  --cf-text-sm: 0.8rem;
+  --cf-text-base: 1rem;
+  --cf-text-md: 1.25rem;
+  --cf-text-lg: 1.5625rem;
+  --cf-text-2xl: 2.4414rem;
+  --cf-text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+
+  /* space — 4 pt scale */
+  --cf-space-2xs: 0.25rem;
+  --cf-space-xs: 0.5rem;
+  --cf-space-sm: 0.75rem;
+  --cf-space-md: 1rem;
+  --cf-space-lg: 1.5rem;
+  --cf-space-xl: 2.5rem;
+  --cf-space-2xl: 4rem;
+  --cf-space-3xl: 6rem;
+
+  /* motion */
+  --cf-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cf-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --cf-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --cf-dur-micro: 120ms;
+  --cf-dur-short: 220ms;
+  --cf-dur-long: 420ms;
+
+  /* rules, radii, elevation */
+  --cf-rule-hair: 1px;
+  --cf-rule-thick: 2px;
+  --cf-radius-sm: 6px;
+  --cf-radius-md: 10px;
+  --cf-radius-lg: 14px;
+  --cf-radius-pill: 999px;
+  --cf-shadow-whisper: 0 1px 2px oklch(0.2 0.01 158 / 0.06);
+  --cf-shadow-pill: 0 8px 24px -12px oklch(0.2 0.01 158 / 0.18);
+
+  /* z-index — named scale */
+  --cf-z-raised: 10;
+  --cf-z-nav: 200;
+}
+
+.dark {
+  --cf-paper: oklch(0.145 0.006 158);
+  --cf-paper-2: oklch(0.205 0.008 158);
+  --cf-rule: oklch(0.3 0.008 158);
+
+  --cf-ink: oklch(0.985 0.004 158);
+  --cf-muted: oklch(0.72 0.008 158);
+
+  --cf-accent: oklch(0.79 0.17 158);
+  --cf-accent-ink: oklch(0.83 0.16 158);
+  --cf-on-accent: oklch(0.16 0.02 158);
+  --cf-focus: oklch(0.82 0.16 158);
+
+  --cf-diff-add: oklch(0.82 0.16 158);
+  --cf-diff-del: oklch(0.72 0.15 25);
+
+  --cf-shadow-whisper: 0 1px 2px oklch(0 0 0 / 0.4);
+  --cf-shadow-pill: 0 8px 24px -12px oklch(0 0 0 / 0.6);
+}

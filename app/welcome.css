@@ -1,0 +1,703 @@
+/* Hallmark · genre: modern-minimal · macrostructure: Narrative Workflow
+ * theme: Coral (accent anchored to the Code Ferret logo green) · tone: technical
+ * anchor hue: 158 · enrichment: none (typography only)
+ * nav: N5 Floating pill · footer: Ft2 Inline single line
+ */
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-x: clip;
+  background: var(--cf-paper);
+  color: var(--cf-ink);
+  font-family: var(--cf-font-body);
+  font-size: var(--cf-text-base);
+  line-height: 1.55;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ---------------------------------------------------------------- nav (N5) */
+
+.nav-pill {
+  position: fixed;
+  inset: var(--cf-space-md) auto auto 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-space-lg);
+  max-width: calc(100% - 2rem);
+  padding: var(--cf-space-xs) var(--cf-space-xs) var(--cf-space-xs) var(--cf-space-md);
+  background: var(--cf-paper);
+  border: var(--cf-rule-hair) solid var(--cf-rule);
+  border-radius: var(--cf-radius-pill);
+  box-shadow: var(--cf-shadow-pill);
+  z-index: var(--cf-z-nav);
+}
+
+.nav-pill__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-space-xs);
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-md);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--cf-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-pill__brand img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.nav-pill__links {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-pill__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--cf-dur-micro) var(--cf-ease-out);
+}
+
+.nav-pill__links a:hover {
+  color: var(--cf-ink);
+}
+
+.pill-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  min-height: 40px;
+  padding: 0 var(--cf-space-md);
+  border: 0;
+  border-radius: var(--cf-radius-pill);
+  background: var(--cf-accent);
+  color: var(--cf-on-accent);
+  font-family: var(--cf-font-body);
+  font-size: var(--cf-text-sm);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform var(--cf-dur-micro) var(--cf-ease-out),
+    background-color var(--cf-dur-micro) var(--cf-ease-out);
+}
+
+.pill-fill:hover {
+  transform: translateY(-1px);
+}
+
+.pill-fill:active {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--cf-space-2xl);
+  align-items: center;
+  padding-block: clamp(7.5rem, 14vw, 11rem) var(--cf-space-3xl);
+}
+
+.hero__copy {
+  min-width: 0;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 16ch;
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-display);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.hero__lede {
+  margin: var(--cf-space-lg) 0 0;
+  max-width: 54ch;
+  font-size: var(--cf-text-md);
+  line-height: 1.55;
+  color: var(--cf-muted);
+}
+
+.hero__action {
+  margin-top: var(--cf-space-xl);
+}
+
+.hero__signin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-sm);
+  max-width: 19rem;
+}
+
+/* The shared sign-in form ships the app's amber button; on the welcome page
+   the accent is the brand green, so the CTA is restyled to match the page. */
+.hero__signin form button,
+.close__signin form button {
+  width: 100%;
+  min-height: 44px;
+  border-radius: var(--cf-radius-pill);
+  background: var(--cf-accent);
+  color: var(--cf-on-accent);
+  font-family: var(--cf-font-body);
+  font-size: var(--cf-text-base);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition:
+    transform var(--cf-dur-micro) var(--cf-ease-out),
+    background-color var(--cf-dur-micro) var(--cf-ease-out);
+}
+
+.hero__signin form button:hover,
+.close__signin form button:hover {
+  transform: translateY(-1px);
+  background: var(--cf-accent);
+  opacity: 0.94;
+}
+
+.hero__signin form button:active,
+.close__signin form button:active {
+  transform: translateY(0);
+}
+
+.hero__note {
+  margin: 0;
+  font-size: var(--cf-text-sm);
+  line-height: 1.5;
+  color: var(--cf-muted);
+}
+
+/* review specimen — the product's output, not a redrawn screenshot */
+.hero__spec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-md);
+  min-width: 0;
+  margin: 0;
+  padding: var(--cf-space-lg);
+  background: var(--cf-paper-2);
+  border: var(--cf-rule-hair) solid var(--cf-rule);
+  border-radius: var(--cf-radius-lg);
+  box-shadow: var(--cf-shadow-whisper);
+}
+
+.hero__spec figcaption {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-xs);
+  font-family: var(--cf-font-mono);
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+}
+
+.hero__spec-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--cf-radius-pill);
+  background: var(--cf-accent);
+}
+
+.hero__spec .ai-review {
+  font-size: var(--cf-text-sm);
+  line-height: 1.6;
+  color: var(--cf-ink);
+}
+
+.hero__spec .ai-review h3:first-child {
+  margin-top: 0;
+}
+
+.hero__spec .ai-review code {
+  padding: 0.1em 0.35em;
+  border-radius: var(--cf-radius-sm);
+  background: var(--cf-paper);
+  font-family: var(--cf-font-mono);
+  font-size: 0.92em;
+}
+
+.code {
+  margin: 0;
+  padding-block: var(--cf-space-sm);
+  border-block: var(--cf-rule-hair) solid var(--cf-rule);
+  font-family: var(--cf-font-mono);
+  font-size: var(--cf-text-sm);
+  line-height: 1.6;
+  color: var(--cf-muted);
+  overflow-x: auto;
+}
+
+.code__add {
+  color: var(--cf-diff-add);
+}
+
+.code__del {
+  color: var(--cf-diff-del);
+}
+
+/* ----------------------------------------------------------------- bands */
+
+.band {
+  padding-block: var(--cf-space-3xl);
+}
+
+.band--checks {
+  padding-block: var(--cf-space-2xl) var(--cf-space-3xl);
+}
+
+.band--pricing {
+  padding-block: var(--cf-space-2xl) var(--cf-space-3xl);
+}
+
+.band__head {
+  max-width: 44rem;
+}
+
+.band__head h2 {
+  margin: 0;
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-2xl);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.band__head p {
+  margin: var(--cf-space-sm) 0 0;
+  max-width: 58ch;
+  color: var(--cf-muted);
+}
+
+/* ------------------------------------------------------ workflow (F4) */
+
+.steps {
+  margin: var(--cf-space-xl) 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 60rem;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: var(--cf-space-lg);
+  padding-block: var(--cf-space-lg);
+  border-top: var(--cf-rule-thick) solid var(--cf-ink);
+}
+
+.step__n {
+  font-family: var(--cf-font-mono);
+  font-size: var(--cf-text-md);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  color: var(--cf-accent-ink);
+}
+
+.step h3 {
+  margin: 0;
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-lg);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.step p {
+  margin: var(--cf-space-xs) 0 0;
+  max-width: 56ch;
+  color: var(--cf-muted);
+}
+
+/* ------------------------------------------------- checks (F3 spec sheet) */
+
+.spec {
+  width: 100%;
+  margin-top: var(--cf-space-xl);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.spec th,
+.spec td {
+  padding-block: var(--cf-space-md);
+  border-top: var(--cf-rule-hair) solid var(--cf-rule);
+  vertical-align: baseline;
+}
+
+.spec tr:last-child th,
+.spec tr:last-child td {
+  border-bottom: var(--cf-rule-hair) solid var(--cf-rule);
+}
+
+.spec th {
+  width: 15rem;
+  padding-inline-end: var(--cf-space-lg);
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.spec td {
+  color: var(--cf-muted);
+}
+
+/* ---------------------------------------------------------- pricing (2-up) */
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--cf-space-xl);
+  border-top: var(--cf-rule-thick) solid var(--cf-ink);
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-sm);
+  min-width: 0;
+  padding: var(--cf-space-lg) var(--cf-space-lg) var(--cf-space-lg) 0;
+}
+
+.plan + .plan {
+  padding-left: var(--cf-space-lg);
+  border-left: var(--cf-rule-hair) solid var(--cf-rule);
+}
+
+.plan__name {
+  margin: 0;
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.plan--pro .plan__name {
+  color: var(--cf-accent-ink);
+}
+
+.plan__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--cf-space-2xs);
+  margin: 0;
+}
+
+.plan__amount {
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-2xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.plan__amount--text {
+  font-size: var(--cf-text-lg);
+  letter-spacing: -0.02em;
+}
+
+.plan__period {
+  font-family: var(--cf-font-mono);
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+}
+
+.plan__note {
+  margin: 0;
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+}
+
+.plan__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-2xs);
+  margin: var(--cf-space-xs) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+}
+
+.plan__list li {
+  display: flex;
+  gap: var(--cf-space-xs);
+}
+
+.plan__list li::before {
+  content: "—";
+  color: var(--cf-accent);
+}
+
+.plan__cta {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: var(--cf-space-md);
+  padding-bottom: 2px;
+  font-size: var(--cf-text-sm);
+  font-weight: 600;
+  color: var(--cf-ink);
+  text-decoration: none;
+  border-bottom: var(--cf-rule-thick) solid var(--cf-accent);
+}
+
+.plan__cta:hover {
+  color: var(--cf-accent-ink);
+}
+
+/* ------------------------------------------------------------ close band */
+
+.close {
+  padding-block: var(--cf-space-2xl);
+  background: var(--cf-paper-2);
+  border-block: var(--cf-rule-hair) solid var(--cf-rule);
+}
+
+.close__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--cf-space-lg);
+}
+
+.close h2 {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--cf-font-display);
+  font-size: var(--cf-text-2xl);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.close__signin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-xs);
+  width: min(100%, 19rem);
+}
+
+/* --------------------------------------------------------- footer (Ft2) */
+
+.foot-line {
+  padding-block: var(--cf-space-lg);
+}
+
+.foot-line p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--cf-space-xs);
+  margin: 0;
+  font-size: var(--cf-text-sm);
+  color: var(--cf-muted);
+}
+
+.foot-line__brand {
+  font-family: var(--cf-font-display);
+  font-weight: 600;
+  color: var(--cf-ink);
+}
+
+.foot-line__sep {
+  color: var(--cf-rule);
+}
+
+.foot-line a {
+  color: var(--cf-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: var(--cf-rule-hair) solid var(--cf-rule);
+}
+
+.foot-line a:hover {
+  color: var(--cf-ink);
+  border-bottom-color: var(--cf-ink);
+}
+
+/* -------------------------------------------------------------- motion */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: welcome-reveal var(--cf-dur-long) var(--cf-ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+
+@keyframes welcome-reveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------- a11y */
+
+.welcome :where(a, button, [role="button"]):focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 3px;
+  border-radius: var(--cf-radius-sm);
+}
+
+#workflow,
+#checks,
+#pricing {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: welcome-reveal-reduced 150ms linear forwards;
+    transform: none;
+  }
+
+  @keyframes welcome-reveal-reduced {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .pill-fill:hover,
+  .hero__signin form button:hover,
+  .close__signin form button:hover {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 60rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--cf-space-xl);
+    padding-block: clamp(7rem, 18vw, 9rem) var(--cf-space-2xl);
+  }
+
+  .hero h1 {
+    max-width: 20ch;
+  }
+
+  .step {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  .nav-pill {
+    gap: var(--cf-space-sm);
+    padding-inline: var(--cf-space-sm) var(--cf-space-xs);
+  }
+
+  .nav-pill__links {
+    display: none;
+  }
+
+  .hero__spec {
+    padding: var(--cf-space-md);
+  }
+
+  .step {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--cf-space-2xs);
+  }
+
+  .spec,
+  .spec tbody,
+  .spec tr,
+  .spec th,
+  .spec td {
+    display: block;
+    width: auto;
+  }
+
+  .spec tr {
+    padding-block: var(--cf-space-sm);
+    border-top: var(--cf-rule-hair) solid var(--cf-rule);
+  }
+
+  .spec th,
+  .spec td {
+    padding: 0;
+    border: 0;
+  }
+
+  .spec th {
+    padding-inline-end: 0;
+  }
+
+  .spec tr:last-child th,
+  .spec tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .spec tr:last-child {
+    border-bottom: var(--cf-rule-hair) solid var(--cf-rule);
+  }
+
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plan {
+    padding-inline: 0;
+    padding-block: var(--cf-space-lg);
+  }
+
+  .plan + .plan {
+    padding-left: 0;
+    border-left: 0;
+    border-top: var(--cf-rule-hair) solid var(--cf-rule);
+  }
+
+  .close__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .foot-line p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--cf-space-2xs);
+  }
+
+  .foot-line__sep {
+    display: none;
+  }
+}

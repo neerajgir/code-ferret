@@ -40,5 +40,8 @@ export type SubscriptionPlan = "free" | "pro";
 export type UserSubscription = {
   plan: SubscriptionPlan;
   status: "active" | "canceled" | "trialing";
+  /** ISO date the current paid period ends; null when there is no renewal. */
   renewsAt: string | null;
+  /** True when Pro is canceled but still running to `renewsAt`. */
+  cancelAtPeriodEnd: boolean;
 };
