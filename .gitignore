@@ -44,3 +44,5 @@ next-env.d.ts
 
 .vercel
 .env*
+
+code-ferret-ai-code-reviewer.2026-10-22.private-key.pem
